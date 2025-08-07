@@ -17,10 +17,34 @@ app.get('/', (req, res) => {
 // Socket 
 const io = require('socket.io')(http)
 
-io.on('connection', (socket) => {
-    console.log('Connected...')
-    socket.on('message', (msg) => {
+/*io.on('connection', (socket) => {
+    console.log('A user connected')
+   socket.on('message', (msg) => {
         socket.broadcast.emit('message', msg)
     })
 
-})
+})*/
+
+// New
+  io.on("connection", (socket) => {
+    console.log("A user connected",socket.id);
+     socket.on('message', (msg) => {
+        socket.broadcast.emit('message', msg)
+    })
+
+    // Optional: store user's name if sent from client
+    socket.on("new-user", (username) => {
+        socket.username = username;
+        socket.broadcast.emit("user-joined", username);
+    });
+
+    // Handle disconnect
+    socket.on("disconnect", () => {
+        if (socket.username) {
+            socket.broadcast.emit("user-left", `${socket.username} has left the chat.`);
+        } else {
+            socket.broadcast.emit("user-left", `A user has left the chat.`);
+        }
+        console.log("A user disconnected", socket.id);
+    });
+});
