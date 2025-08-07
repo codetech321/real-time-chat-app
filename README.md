@@ -5,7 +5,7 @@ A real-time chat application built using **Node.js**, **Express**, and **Socket.
 🚀 Features
 
 - Real-time bi-directional communication with **Socket.IO**
-- Custom username support
+- Custom userid support
 - Chat message broadcast to all connected users
 - User join/leave notifications
 - Lightweight frontend using HTML, CSS, and vanilla JavaScript
