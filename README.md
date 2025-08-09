@@ -62,9 +62,6 @@ Messages sent by one user are instantly broadcast to all others
 
 When a user disconnects, the server notifies the remaining users
 
-📸 Screenshots
-(You can add screenshots of your chat UI here)
-
 🧩 Dependencies
 express
 
